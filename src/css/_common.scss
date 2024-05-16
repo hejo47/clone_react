@@ -25,11 +25,11 @@
   overflow-y: scroll;
   > div {
     @include position;
-    height: 200vh;
   }
 }
 
 section {
+  padding-bottom: 50px;
   > .container {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -229,9 +229,11 @@ section {
 
 .inner-header {
   @include position(st, 0, null, null, 0);
+  z-index: 999;
   height: 120px;
   border-top-left-radius: $border-radius--default;
   border-top-right-radius: $border-radius--default;
+  background: $point-color--second;
   &__top {
     @include flex-row;
     justify-content: space-between;
@@ -316,8 +318,18 @@ section {
   align-items: flex-start;
   flex-wrap: wrap;
   width: 100%;
-  column-gap: 5px;
+  column-gap: 15px;
   margin-top: 5px;
+  &__container {
+    @include flex-column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 50px;
+    width: 100%;
+  }
+  &__wrap {
+    width: inherit;
+  }
   &__item {
     a {
       @include flex-column;
@@ -357,9 +369,55 @@ section {
       }
     }
   }
+  &-sm {
+    li {
+      width: calc((100% - 15px * 4) / 5);
+      .list__item-img {
+        padding-bottom: 140px;
+      }
+    }
+  }
   &-md {
     li {
-      width: calc(100% / 7);
+      width: calc((100% - 15px * 6) / 7);
+    }
+  }
+  &-lg {
+    li {
+      width: calc((100% - 15px * 3) / 4);
+    }
+  }
+  &-hr {
+    @include flex-column;
+    height: 300px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 10px;
+    li {
+      width: calc((100% - 15px * 3) / 4);
+    }
+    .list__item {
+      a {
+        @include flex-row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        height: 100%;
+        column-gap: 10px;
+        .list__item-img {
+          width: 65px;
+          padding-bottom: 65px;
+        }
+        .list__item-txt {
+          @include flex-column;
+          justify-content: center;
+          align-items: flex-start;
+          width: 90%;
+          max-width: 285px;
+          height: 100%;
+          margin-top: 0;
+        }
+      }
     }
   }
 }
