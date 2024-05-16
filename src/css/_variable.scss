@@ -1,10 +1,12 @@
 // COLOR
-$text-color--default: #181A1B;
+$text-color--default: #FFF;
+$text-color--gray: #DDD;
 
-$point-color--default: #FFF;
-$point-color--second: #FEFEFE;
+$point-color--default: #fa4270;
+$point-color--second: #222;
+$point-color--third: #333;
 
-$border-color--default: #E7EBEE;
+$border-color--default: #DDD;
 
 // FONT-SIZE
 $font-size--default: 16px;
@@ -15,6 +17,10 @@ $width--max: 1920px;
 
 // TRANSITION
 $transition--default: 0.3s linear all;
+
+// BORDER-RADIUS
+$border-radius--default: 5px;
+$border-radius--sm: 7px;
 
 
 

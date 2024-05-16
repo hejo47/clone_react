@@ -1,30 +1,399 @@
 * {
-  color: #333;
+  color: $text-color--default;
 }
 
 .view {
   @include position;
+  @include flex-row;
+  flex-wrap: wrap;
   width: 100%;
   overflow-x: hidden;
+  min-height: 100vh;
+  background: #000;
 }
 
 .content {
-  @include flex-row;
-  justify-self: center;
-  align-items: flex-start;
-  padding-top: 20px;
-  max-width: 1320px;
-  margin: 0 auto;
+  @include position;
+  @include disable-scroll;
+  width: 100%;
+  max-width: calc(100% - 40%);
+  min-width: calc(100% - 420px);
+  height: calc(100vh - 112px);
+  margin-top: 20px;
+  border-radius: $border-radius--default;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  > div {
+    @include position;
+    height: 200vh;
+  }
 }
 
 section {
-  width: 100%;
+  > .container {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
 }
 
 .container {
   width: 100%;
-  max-width: 1320px;
   padding: 0 20px;
   margin: 0 auto;
 }
 
+.header {
+  width: 40%;
+  max-width: 400px;
+  padding: {
+    top: 20px;
+    bottom: 20px;
+  }
+  > div {
+    @include flex-column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    row-gap: 5px;
+    width: 100%;
+  }
+  &__logo {
+    width: inherit;
+    padding: {
+      left: 5px;
+    }
+    margin: {
+      bottom: 10px;
+    }
+    a {
+      svg {
+        stroke: $point-color--default;
+        font-size: 30px;
+      }
+    }
+  }
+  &__search {
+    input {
+      width: 100%;
+      height: 28px;
+      background: $point-color--third;
+      outline: none;
+      border: 1px solid #444;
+      border-radius: $border-radius--default;
+      padding: {
+        left: 30px;
+      }
+    }
+    div {
+      @include position;
+      svg {
+        @include position(a, 50%, null, null, 8px);
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+.playlist {
+  &__add {
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+  &__btn {
+    font-size: 20px;
+  }
+  &__list {
+    @include flex-column;
+    @include disable-scroll;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: calc(100vh - 318px);
+    overflow-y: scroll;
+    row-gap: 10px;
+    margin-top: 15px;
+    &-item {
+      a {
+        @include flex-row;
+        justify-content: flex-start;
+        align-items: center;
+        column-gap: 15px;
+      }
+    }
+  }
+  &__thumb {
+    width: 60px;
+    height: 60px;
+    background: $point-color--third;
+  }
+  &__desc {
+    &-title {
+      font-size: 15px;
+    }
+    &-author {
+      display: block;
+      font-size: 13px;
+      margin-top: 5px;
+      color: $text-color--gray;
+    }
+  }
+}
+
+.playbar {
+  @include position;
+  @include flex-column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 72px;
+  padding: 5px 15px 15px;
+  text-align: center;
+  &__tools {
+    @include flex-row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    button {
+      font-size: 20px;
+    }
+  }
+  &__timeline {
+    @include position;
+    @include flex-row;
+    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 8px;
+    p {
+      transform: translateY(-50%);
+      font-size: 12px;
+    }
+    &-start {
+      @include position(a, 50%, null, null, -35px);
+    }
+    &-end {
+      @include position(a, 50%, -35px, null, null);
+    }
+    &-bar {
+      @include position;
+      width: inherit;
+      background: $point-color--third;
+      height: 6px;
+      border-radius: $border-radius--default;
+      overflow: hidden;
+      cursor: pointer;
+      .current {
+        @include position(a, 0, null, null, 0);
+        width: 10%;
+        height: inherit;
+        background: #FFF;
+      }
+    }
+  }
+  &__menu {
+    @include position(a, 50%, 20px);
+    transform: translateY(-50%);
+    height: 42px;
+    &-sound {
+      @include flex-row;
+      justify-content: center;
+      align-items: center;
+      column-gap: 5px;
+      svg {
+        font-size: 17px;
+        margin-top: 3px;
+        fill: #999;
+      }
+      &-bar {
+        @include position;
+        width: 100px;
+        height: 3px;
+        background: $point-color--third;
+        border-radius: $border-radius--default;
+        overflow: hidden;
+        cursor: pointer;
+        .current {
+          @include position(a, 0, null, null, 0);
+          width: 10%;
+          height: inherit;
+          background: #FFF;
+        }
+      }
+    }
+  }
+}
+
+.inner-header {
+  @include position(st, 0, null, null, 0);
+  height: 120px;
+  border-top-left-radius: $border-radius--default;
+  border-top-right-radius: $border-radius--default;
+  &__top {
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__bottom {
+    
+  }
+  &__move {
+    @include flex-row;
+    column-gap: 5px;
+  }
+  &__tools {
+    @include position;
+    @include flex-row;
+    column-gap: 5px;
+    &-menu {
+      @include position(a, 45px, 0, null, null);
+      background: $point-color--third;
+      width: 215px;
+      border-radius: $border-radius--default;
+      display: none;
+      li {
+        a {
+          @include flex-row;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 15px;
+          color: #FFF;
+          font-size: 14px;
+          > svg {
+            font-size: 13px;
+          }
+        }
+        &:last-of-type {
+          border-top: 1px solid #444;
+        }
+      }
+      &.active {
+        display: block;
+      }
+    }
+  }
+  &__profile {
+    
+  }
+  &__type {
+    ul {
+      @include flex-row;
+      justify-content: flex-start;
+      align-items: center;
+      column-gap: 5px;
+      margin-top: 15px;
+      li {
+        a {
+          display: block;
+          color: #FFF;
+          background: $point-color--third;
+          border-radius: 30px;
+          padding: 7px 10px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  &__btn {
+    border-radius: 50%;
+    background-color: #000 !important;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    > svg {
+      font-size: 20px;
+      fill: #AAA;
+    }
+  }
+}
+
+.list {
+  @include flex-row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  column-gap: 5px;
+  margin-top: 5px;
+  &__item {
+    a {
+      @include flex-column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    &-img {
+      @include position;
+      width: 100%;
+      padding-bottom: 100%;
+      background: $point-color--third;
+      overflow: hidden;
+      border-radius: $border-radius--sm;
+      img {
+        @include position(a, 0, null, null, 0);
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &-txt {
+      margin-top: 10px;
+      p {
+        display: block;
+      }
+      .title {
+        @include words-skip;
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .desc {
+        @include words-skip(2);
+        font-size: 15px;
+        font-weight: 300;
+        color: $text-color--gray;
+        margin-top: 3px;
+      }
+    }
+  }
+  &-md {
+    li {
+      width: calc(100% / 7);
+    }
+  }
+}
+
+.title {
+  &__wrap {
+    @include flex-row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-lg {
+    display: block;
+    font-size: 28px;
+    font-weight: 600;
+    padding: {
+      bottom: 7px;
+    }
+  }
+}
+
+.style {
+  &__basic {
+    padding: 20px;
+  }
+  &__bubble {
+    &-basic {
+      width: 100%;
+      border-radius: $border-radius--default;
+      background: $point-color--second;
+    }
+  }
+}
+
+.btn {
+  background: transparent;
+  border: none;
+}
